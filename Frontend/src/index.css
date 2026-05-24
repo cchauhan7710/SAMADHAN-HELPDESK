@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+/* ─── Premium Global Theme ─── */
+html { 
+  background-color: #fcfcfd !important; 
+  scroll-behavior: smooth;
+}
+body { 
+  background-color: #fcfcfd !important; 
+  color: #0f172a !important; 
+  font-family: 'Inter', sans-serif !important; 
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, h4, h5, h6, .font-display {
+  font-family: 'Playfair Display', serif !important;
+  letter-spacing: -0.01em;
+}
+#root { 
+  background-color: #fcfcfd; 
+  min-height: 100vh; 
+}
+
+/* ─── Premium Animations ─── */
+@keyframes smoothFadeUp {
+  0% { opacity: 0; transform: translateY(40px) scale(0.98); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes floatGlow {
+  0%, 100% { transform: translateY(0) scale(1); opacity: 0.4; }
+  50% { transform: translateY(-20px) scale(1.05); opacity: 0.7; }
+}
+@keyframes pulseBorder {
+  0%, 100% { border-color: rgba(16, 185, 129, 0.2); }
+  50% { border-color: rgba(16, 185, 129, 0.8); box-shadow: 0 0 20px rgba(16, 185, 129, 0.4); }
+}
+@keyframes slideGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-smoothFadeUp { animation: smoothFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.animate-floatGlow { animation: floatGlow 6s ease-in-out infinite; }
+.animate-pulseBorder { animation: pulseBorder 3s ease-in-out infinite; }
+.animate-slideGradient { background-size: 200% 200%; animation: slideGradient 4s ease infinite; }
+
+/* ─── Inputs & UI Elements ─── */
+.inp {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 14px 18px;
+  color: #0f172a;
+  font-size: 0.95rem;
+  font-family: 'Inter', sans-serif;
+  outline: none;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  transition: all 0.2s ease-in-out;
+}
+.inp::placeholder { color: #94a3b8; }
+.inp:focus { 
+  border-color: #3b82f6; 
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15); 
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #f8fafc; }
+::-webkit-scrollbar-thumb { 
+  background: #cbd5e1; 
+  border-radius: 99px; 
+}
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+/* ─── Selection ─── */
+::selection { background: rgba(59, 130, 246, 0.2); color: #0f172a; }
