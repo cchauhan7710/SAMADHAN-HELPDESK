@@ -21,7 +21,8 @@ const createTransporter = () =>
 // 🧩 Step 1: Request OTP during signup
 export const requestSignupOtp = async (req, res) => {
   try {
-    const { name, email, password, role } = req.body;
+    let { name, email, password, role } = req.body;
+    email = email?.trim();
 
     if (!name || !email || !password || !role)
       return res.status(400).json({ message: "All fields are required" });

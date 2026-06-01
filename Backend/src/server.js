@@ -39,6 +39,11 @@ app.use("/uploads", express.static("uploads")); // for images
 //API For ticket creation from another platform 
 app.use("/api", externalTicketApi);
 
+// Health Check / Root route
+app.get("/", (req, res) => {
+  res.send("SAMADHAN Helpdesk API is running perfectly! 🚀");
+});
+
 // 🚨 404 LOGGER 🚨
 app.use((req, res, next) => {
   console.log(`❌ 404 NOT FOUND: ${req.method} ${req.originalUrl}`);
