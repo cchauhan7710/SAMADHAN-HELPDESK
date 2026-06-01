@@ -62,22 +62,20 @@ export const requestSignupOtp = async (req, res) => {
       await user.save();
     }
 
-    // Send Email AFTER saving
-    try {
-      await createTransporter().sendMail({
-        from: `"SAMADHAN Helpdesk" <${process.env.EMAIL}>`,
-        to: email,
-        subject: "SAMADHAN - Account Verification OTP",
-        html: `
-          <h2>Welcome to SAMADHAN Helpdesk 🎉</h2>
-          <p>OTP for <b>${email}</b>:</p>
-          <h1 style="letter-spacing:5px;">${otp}</h1>
-          <p>This code will expire in 10 minutes.</p>
-        `,
-      });
-    } catch (mailErr) {
+    // Send Email AFTER saving asynchronously (Fire and Forget)
+    createTransporter().sendMail({
+      from: `"SAMADHAN Helpdesk" <${process.env.EMAIL}>`,
+      to: email,
+      subject: "SAMADHAN - Account Verification OTP",
+      html: `
+        <h2>Welcome to SAMADHAN Helpdesk 🎉</h2>
+        <p>OTP for <b>${email}</b>:</p>
+        <h1 style="letter-spacing:5px;">${otp}</h1>
+        <p>This code will expire in 10 minutes.</p>
+      `,
+    }).catch(mailErr => {
       console.warn("⚠️ SMTP Email send failed. Retrieve OTP from console:", mailErr.message);
-    }
+    });
 
     res.json({ message: "OTP sent to your email" });
 
