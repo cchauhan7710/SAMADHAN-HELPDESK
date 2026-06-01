@@ -18,7 +18,7 @@ export default function Chatbot() {
     localStorage.getItem("jwt") ||
     "";
 
-  const API = "http://localhost:5000/api/chat";
+  const API = `${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/chat`;
 
   const scrollToBottom = () =>
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });

@@ -13,7 +13,7 @@ export default function Dashboard() {
 
   const fetchTickets = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/tickets", {
+      const res = await axios.get(`${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/tickets`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       setTickets(res.data);
@@ -25,7 +25,7 @@ export default function Dashboard() {
   const createTicket = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/api/tickets", form, {
+      await axios.post(`${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/tickets`, form, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       setShowForm(false);

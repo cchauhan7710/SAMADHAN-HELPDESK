@@ -22,7 +22,7 @@ export default function ForgotPassword() {
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.post("http://localhost:5000/api/auth/forgot-password", { email });
+      await axios.post(`${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/auth/forgot-password`, { email });
       showMsg("📩 OTP Sent to Email!", "success");
       setStage("otp");
       setTimer(60);
@@ -34,7 +34,7 @@ export default function ForgotPassword() {
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.post("http://localhost:5000/api/auth/verify-forgot-otp", { email, otp });
+      await axios.post(`${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/auth/verify-forgot-otp`, { email, otp });
       showMsg("✅ OTP Verified!", "success");
       setStage("reset");
     } catch { showMsg("❌ Incorrect OTP", "error"); }
@@ -43,7 +43,7 @@ export default function ForgotPassword() {
 
   const resendOTP = async () => {
     try {
-      await axios.post("http://localhost:5000/api/auth/forgot-password", { email });
+      await axios.post(`${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/auth/forgot-password`, { email });
       showMsg("🔄 OTP Resent!", "success");
       setTimer(60);
     } catch { showMsg("❌ Resend Failed", "error"); }
@@ -53,7 +53,7 @@ export default function ForgotPassword() {
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.post("http://localhost:5000/api/auth/reset-password", { email, newPass });
+      await axios.post(`${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/auth/reset-password`, { email, newPass });
       showMsg("🎉 Password Updated!", "success");
       setTimeout(() => navigate("/login"), 1500);
     } catch { showMsg("❌ Reset Failed", "error"); }

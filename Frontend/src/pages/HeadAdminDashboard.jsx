@@ -16,7 +16,7 @@ export default function HeadAdminDashboard() {
   const [newAdmin, setNewAdmin] = useState({ name: "", email: "", role: "admin", password: "" });
   const [createdCredentials, setCreatedCredentials] = useState({ email: "", password: "" });
 
-  const API_BASE = "http://localhost:5000";
+  const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:5000";
   const getAuth = () => ({ headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } });
 
   const fetchUsers = async () => {

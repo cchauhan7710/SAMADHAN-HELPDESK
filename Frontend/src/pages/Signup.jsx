@@ -34,7 +34,7 @@ export default function Signup() {
     if (form.name.length<3) return showMsg("⚠️ Name must be at least 3 characters","warn");
     if (!form.email.includes("@")) return showMsg("⚠️ Enter a valid email","warn");
     if (form.password.length<6) return showMsg("⚠️ Password must be at least 6 characters","warn");
-    try { setLoading(true); const res = await axios.post("http://localhost:5000/api/auth/signup/request-otp",form); showMsg(res.data.message||"📩 OTP sent!","success"); setStep(2); setCooldown(30); }
+    try { setLoading(true); const res = await axios.post(`${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/auth/signup/request-otp`,form); showMsg(res.data.message||"📩 OTP sent!","success"); setStep(2); setCooldown(30); }
     catch(err) { showMsg(err.response?.data?.message||"❌ Failed to send OTP","error"); }
     finally { setLoading(false); }
   };
@@ -42,14 +42,14 @@ export default function Signup() {
   const handleVerifyOtp = async (e) => {
     e.preventDefault();
     if (otpValue.length!==6) return showMsg("⚠️ Enter full 6-digit OTP","warn");
-    try { setLoading(true); await axios.post("http://localhost:5000/api/auth/signup/verify-otp",{email:form.email,otp:otpValue}); showMsg("✅ Account verified!","success"); setTimeout(()=>navigate("/login"),1500); }
+    try { setLoading(true); await axios.post(`${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/auth/signup/verify-otp`,{email:form.email,otp:otpValue}); showMsg("✅ Account verified!","success"); setTimeout(()=>navigate("/login"),1500); }
     catch(err) { showMsg(err.response?.data?.message||"❌ Incorrect OTP","error"); }
     finally { setLoading(false); }
   };
 
   const handleResendOtp = async () => {
     if (cooldown>0) return;
-    try { setLoading(true); await axios.post("http://localhost:5000/api/auth/signup/request-otp",form); showMsg("📩 OTP resent!","success"); setCooldown(30); }
+    try { setLoading(true); await axios.post(`${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/auth/signup/request-otp`,form); showMsg("📩 OTP resent!","success"); setCooldown(30); }
     catch { showMsg("❌ Failed to resend OTP","error"); }
     finally { setLoading(false); }
   };

@@ -13,7 +13,7 @@ export default function TechDashboard() {
 
   const fetchTickets = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/tickets/assigned/my", getAuth());
+      const res = await axios.get(`${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/tickets/assigned/my`, getAuth());
       setTickets(res.data);
     } catch(err) { console.log("❌ Failed", err); }
     finally { setLoading(false); }
@@ -23,7 +23,7 @@ export default function TechDashboard() {
 
   const resolveTicket = async (id) => {
     try {
-      const res = await axios.put(`http://localhost:5000/api/tickets/${id}/status`, { status:"Resolved", comment:closeComment }, getAuth());
+      const res = await axios.put(`${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/tickets/${id}/status`, { status:"Resolved", comment:closeComment }, getAuth());
       setTickets(prev => prev.map(t => t._id===id ? {...t, status:res.data.status} : t));
       setActiveCloseId(null); setCloseComment("");
     } catch(err) { console.log("❌ Failed to resolve", err); }
