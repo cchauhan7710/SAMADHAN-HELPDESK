@@ -9,11 +9,11 @@ export default function Footer() {
         </h3>
 
         <p className="text-slate-600 text-base md:text-lg mb-2 font-normal">
-          Built for Scale & Efficiency — crafted with 💙 by <span className="font-semibold text-slate-900">Anup Kumar</span>
+          Built for Scale & Efficiency — crafted with 💙 by <span className="font-semibold text-slate-900">Rahul Chauhan</span>
         </p>
 
         <p className="text-slate-500 text-sm mb-10 font-normal">
-          Powering smarter IT management — one ticket at a time 🚀
+          Powering smarter IT management — one ticket at a time 
         </p>
 
         {/* Links */}
