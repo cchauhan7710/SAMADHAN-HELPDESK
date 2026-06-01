@@ -104,7 +104,7 @@ export default function HeadAdminDashboard() {
 
           <button onClick={() => setShowCreateModal(true)}
             className="px-5 py-2.5 rounded-xl font-semibold text-white bg-slate-900 hover:bg-slate-800 hover:shadow-lg hover:shadow-slate-500/10 hover:scale-[1.02] active:scale-[0.98] transition-all">
-            + Create Admin
+            + Create Admins
           </button>
         </div>
 
